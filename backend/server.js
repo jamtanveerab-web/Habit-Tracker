@@ -19,9 +19,11 @@ connectDB()
       app.listen(PORT, () => console.log(`Ledger API listening on port ${PORT}`));
     }
   })
-  .catch((err) => {
+.catch((err) => {
     console.error("Failed to connect to MongoDB:", err.message);
-    process.exit(1);
+    if (require.main === module) {
+      process.exit(1);
+    }
   });
 
 module.exports = app;
